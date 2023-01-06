@@ -32,6 +32,13 @@ def cache_prompts(update=False):
             f.write(requests.get(PROMPTS_URL).text)
             f.close()
 
+    # init custom prompts if not exists
+    if not os.path.exists(CUSTOM_PROMPTS):
+        with open(CUSTOM_PROMPTS, "w") as f:
+            header = '"act","prompt"\n'
+            f.write(header)
+            f.close()
+
 def load_prompts(custom_only=False):
     '''
     Loads the prompts from the cache. if the cache is empty, download the prompts.
@@ -68,12 +75,6 @@ def load_prompts(custom_only=False):
 
 # save custom prompts to CUSTOM_PROMPTS
 def save_prompt(act, prompt):
-    # if custom prompts is empty initialize it with a the csv header
-    if not os.path.exists(CUSTOM_PROMPTS):
-        with open(CUSTOM_PROMPTS, "w") as f:
-            header = '"act","prompt"\n'
-            f.write(header)
-            f.close()
 
     with open(CUSTOM_PROMPTS, "a") as f:
         f.write(f'"{act}","{prompt}"\n')
