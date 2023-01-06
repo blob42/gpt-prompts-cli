@@ -18,8 +18,8 @@ CACHE_LOCATION = os.path.join(XDG_DATA_HOME, "chatgpt-prompts", "prompts.csv")
 PROMPTS_REPO_URL = "https://github.com/f/awesome-chatgpt-prompts"
 REPO_PROMPTS_RELPATH = "prompts.csv"
 
-# save custom prompts to my-prompts.csv
-CUSTOM_PROMPTS = os.path.join(XDG_DATA_HOME, "chatgpt-prompts", "my-prompts.csv")
+# save custom prompts to prompts.csv
+CUSTOM_PROMPTS = os.path.join(XDG_DATA_HOME, "chatgpt-prompts", "prompts.csv")
 
 def cache_prompts(update=False):
     '''
