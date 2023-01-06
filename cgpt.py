@@ -10,7 +10,7 @@ import csv
 import click
 
 # We will also need to import the `fzf` package to use the `fzf` command.
-from fzf import Fzf, fzf
+from pyfzf.pyfzf import FzfPrompt as Fzf
 
 XDG_DATA_HOME = os.environ.get('XDG_DATA_HOME', os.path.expanduser('~/.local/share'))
 PROMPTS_URL = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv"
@@ -91,10 +91,13 @@ def choose_prompt(custom_only=False):
     # load custom prompts
 
     chooser = Fzf()
-    header = "Select an act"
-    preview = "echo {}"
-    preview_window = "right:50%"
-    act = chooser.prompt(prompts.keys(), header=header, preview=preview, preview_window=preview_window)
+    header = "'Select an act'"
+
+    # preview the prompt of the selected act
+    preview = f"'cat {CACHE_LOCATION} | grep {{1}} | cut -d, -f 2'"
+
+    preview_window = "right:50%,wrap"
+    act = chooser.prompt(prompts.keys(), '--header={} --preview-window={} --preview {}'.format(header, preview_window, preview,))
     prompt = prompts.get(act[0])
 
     return (act[0], prompt)
