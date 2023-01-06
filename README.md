@@ -50,7 +50,7 @@ You can also use the following commands:
 ## Features
 
 - [x] Update the list of prompts from the remote repository.
-- [x] Add support for custom prompts
+- [x] Add your own custom prompts
 - [ ] Create a pull request to add custom prompts to the
   remote repository.
 - [ ] Delete a custom prompt.
