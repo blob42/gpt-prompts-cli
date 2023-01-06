@@ -34,7 +34,12 @@ TODO
 
 To use this program, run:
 
-`cgpt.py [COMMAND]`
+`./cgpt.py [COMMAND]` 
+
+
+Or print the help with:
+
+`./chpt.py --help` 
 
 If no command is provided, it will present you with a list
 of prompts that you can choose from. Use the up and down
