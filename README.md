@@ -59,5 +59,23 @@ You can also use the following commands:
 ## Credits
 The prompts in this tool are taken from the [awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) repository.
 
+## I am Using GitHub Under Protest
 
+This project is currently hosted on my [personal
+forge](https://git.blob42.xyz/sp4ke/gpt-prompts-cli) and mirrored on GitHub.
+This is not ideal; GitHub is a proprietary, trade-secret system that is not
+Free and Open Souce Software (FOSS).  I am deeply concerned about using a
+proprietary system like GitHub. I urge you to read about the [Give up
+GitHub](https://GiveUpGitHub.org) campaign from [the Software Freedom
+Conservancy](https://sfconservancy.org) to understand some of the reasons why
+GitHub is not a good place to host FOSS projects.
 
+Any use of this project's code by GitHub Copilot, past or present, is done
+without our permission.  We object to GitHub using the code from this project
+in Copilot. Given that this program is connected to ChatGPT, which utilizes
+GPT-3 from OpenAI like Copilot, you would consider this to be hypocritical. We
+do not have a choice, though; companies like Microsoft and OpenAI restricted
+their models with private barriers after training their models using
+open-source knowledge from humans. All people should have access to this
+technology, but until then we must adapt to and make use of these tools
+that offer those who utilize them an unfair advantage over those who don't.
