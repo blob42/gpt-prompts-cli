@@ -4,6 +4,8 @@ This is a command line tool that allows you to select a prompt to use with
 ChatGPT from the [Awesome ChatGPT
 Prompts](https://raw.githubusercontent.com/f/awesome-chatgpt-prompts)
 
+<img src="https://i.imgur.com/hSgIZHp.jpeg" width="600">
+
 
 ## Installation
 
@@ -42,9 +44,6 @@ You can also use the following commands:
 
 - `update`: Update the list of prompts from the remote repository.
 - `add`: Add a custom prompt to the list.
-
-
-## Prompts Location
 
 
 ## Features
