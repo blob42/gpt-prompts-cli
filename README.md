@@ -2,7 +2,8 @@
 
 This is a command line tool that allows you to select a prompt to use with
 ChatGPT from the [Awesome ChatGPT
-Prompts](https://raw.githubusercontent.com/f/awesome-chatgpt-prompts)
+Prompts](https://raw.githubusercontent.com/f/awesome-chatgpt-prompts) or define
+your own custom prompts.
 
 <img src="https://i.imgur.com/hSgIZHp.jpeg" width="600">
 
