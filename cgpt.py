@@ -4,13 +4,11 @@
 import os
 import sys
 import requests
-import csv
-import uuid
+import time
 
 # We will need to import the `click` package to build the CLI.
 import click
 
-from github import Github
 
 # We will also need to import the `fzf` package to use the `fzf` command.
 from pyfzf.pyfzf import FzfPrompt as Fzf
@@ -22,7 +20,8 @@ PROMPTS_URL = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/
 CACHE_LOCATION = os.path.join(XDG_DATA_HOME, "chatgpt-prompts", "prompts.csv")
 PROMPTS_REPO_URL = "https://github.com/f/awesome-chatgpt-prompts"
 REPO_PROMPTS_RELPATH = "prompts.csv"
-TOKEN_FILE = os.path.join(CONFIG_DIR, "token")
+
+UPDATE_INTERVAL = 1 # update the prompts every 1 days
 
 PR_HELP = """
 helper to create a PR from a custom prompt. The output can be appended to the prompts.csv file in the prompts repo. You can
@@ -35,6 +34,13 @@ For example: `./cgpt.py pr | xclip -selection cliboard`
 
 # save custom prompts to my-prompts.csv
 CUSTOM_PROMPTS = os.path.join(XDG_DATA_HOME, "chatgpt-prompts", "my-prompts.csv")
+
+def check_update():
+    last_update = os.path.getmtime(CACHE_LOCATION)
+    # if last update older than UPDATE_INTERVAL days
+    if time.time() - last_update > UPDATE_INTERVAL * 24 * 60 * 60:
+        cache_prompts(update=True)
+
 
 def cache_prompts(update=False):
     '''
@@ -134,20 +140,6 @@ def show_prompts():
 def update():
     cache_prompts(update=True)
 
-def load_token():
-    token = None
-    if not os.path.exists(TOKEN_FILE):
-        token = input("Please enter your GitHub token: ")
-        with open(TOKEN_FILE, "w") as f:
-            f.write(token)
-            f.close()
-    else:
-        with open(TOKEN_FILE, "r") as f:
-            token = f.readline().strip()
-            f.close()
-
-    return token
-
 @click.command(help=PR_HELP)
 def pr():
     '''
@@ -183,6 +175,7 @@ cli.add_command(pr)
 cli.add_command(my)
 
 if __name__ == "__main__":
+    check_update()
     # if no command provided call show_prompts
     if len(sys.argv) == 1:
         show_prompts()
