@@ -36,6 +36,9 @@ For example: `./cgpt.py pr | xclip -selection cliboard`
 CUSTOM_PROMPTS = os.path.join(XDG_DATA_HOME, "chatgpt-prompts", "my-prompts.csv")
 
 def check_update():
+    if not os.path.exists(CACHE_LOCATION):
+        return
+
     last_update = os.path.getmtime(CACHE_LOCATION)
     # if last update older than UPDATE_INTERVAL days
     if time.time() - last_update > UPDATE_INTERVAL * 24 * 60 * 60:
