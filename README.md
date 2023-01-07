@@ -50,6 +50,8 @@ You can also use the following commands:
 
 - `update`: Update the list of prompts from the remote repository.
 - `add`: Add a custom prompt to the list.
+- `my`: List my custom prompts.
+- `pr`: Helper to create a pull request to add a custom prompt to awesome-chatgpt-prompts repo.  
 
 
 ## Features
