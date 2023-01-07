@@ -27,7 +27,9 @@ don't have it already, you can install it by running:
 `sudo yum install fzf`
 
 ### macOS
-TODO
+`brew install fzf`
+then
+`/usr/local/opt/fzf/install`
 
 
 ## Usage
