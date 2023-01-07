@@ -176,10 +176,8 @@ cli.add_command(my)
 
 if __name__ == "__main__":
     check_update()
-    # if no command provided call show_prompts
     if len(sys.argv) == 1:
         show_prompts()
-
     else:
         cli()
 
