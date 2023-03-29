@@ -68,6 +68,8 @@ def init_config():
         os.makedirs(CONFIG_DIR)
 
 
+import csv
+
 def load_prompts(custom_only=False):
     '''
     Loads the prompts from the cache. if the cache is empty, download the prompts.
@@ -79,24 +81,18 @@ def load_prompts(custom_only=False):
     prompts = {}
 
     if not custom_only:
-        with open(CACHE_LOCATION, "r") as f:
-            prompts = f.readlines()
-            
-            # load the prompts into a list of tuples
-            prompts = [tuple(prompt.strip().split(",")) for prompt in prompts]
-
-            # transform into a dict of acts keys and prompt values
-            prompts = {prompt[0]: prompt[1] for prompt in prompts[1:]}
-
+        with open(CACHE_LOCATION, "r", newline='') as f:
+            prompts_reader = csv.reader(f)
+            next(prompts_reader) # skip header row
+            prompts = {row[0]: row[1] for row in prompts_reader}
             f.close()
 
-    with open(CUSTOM_PROMPTS, "r") as f:
-        custom_prompts = f.readlines()
-        custom_prompts = [tuple(prompt.strip().split(",")) for prompt in custom_prompts]
-        custom_prompts = {prompt[0]: prompt[1] for prompt in custom_prompts[1:]}
+    with open(CUSTOM_PROMPTS, "r", newline='') as f:
+        custom_prompts_reader = csv.reader(f)
+        next(custom_prompts_reader) # skip header row
+        custom_prompts = {row[0]: row[1] for row in custom_prompts_reader}
         prompts.update(custom_prompts)
         f.close()
-    
 
     return prompts
 
@@ -119,7 +115,8 @@ class Fzfer:
         self.act_prompt = prompts
         self.fzf = Fzf()
         self.header = "act,prompt"
-        self.preview = f"'cat {CACHE_LOCATION} | grep {{1}} | cut -d, -f 2'"
+        self.preview = f"'cat {CACHE_LOCATION} | grep \'{{}}\' '"
+        # self.preview = f"{{}}"
         self.preview_window = "right:50%,wrap"
 
     def show(self):
